@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmanjtpaidfbe"]
+
+[ext_resource type="Script" path="res://MicRecord.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://lqjhfrmm1k4p" path="res://Intro.ogg" id="2"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_y5t2o"]
+
+[node name="MicRecord" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource( "1" )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamRecord" type="AudioStreamPlayer" parent="."]
+stream = SubResource( "AudioStreamMicrophone_y5t2o" )
+autoplay = true
+bus = &"Record"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( "2" )
+volume_db = -6.0
+
+[node name="RecordButton" type="Button" parent="."]
+offset_left = -86.2071
+offset_top = -43.4182
+offset_right = -20.2071
+offset_bottom = -14.4182
+text = "Record"
+
+[node name="SaveButton" type="Button" parent="."]
+offset_left = -70.5035
+offset_top = 41.1463
+offset_right = 200.496
+offset_bottom = 70.1463
+disabled = true
+text = "Save WAV To:"
+
+[node name="Filename" type="LineEdit" parent="SaveButton"]
+offset_left = -167.228
+offset_top = -0.966003
+offset_right = -6.22772
+offset_bottom = 32.034
+text = "user://record.wav"
+caret_blink = true
+caret_blink_speed = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="Button" parent="."]
+offset_left = 87.2854
+offset_top = -37.7479
+offset_right = 131.285
+offset_bottom = -8.74789
+disabled = true
+text = "Play"
+
+[node name="PlayMusic" type="Button" parent="."]
+offset_left = -106.87
+offset_top = 103.932
+offset_right = -13.8704
+offset_bottom = 132.932
+text = "Play Music"
+
+[node name="Status" type="Label" parent="."]
+
+[connection signal="pressed" from="RecordButton" to="." method="_on_RecordButton_pressed"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="PlayMusic" to="." method="_on_Play_Music_pressed"]
